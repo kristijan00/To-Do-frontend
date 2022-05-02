@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/signUp.css">
     <title>Sign Up</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
 </head>
 <body>
     <main>
@@ -13,24 +16,23 @@
             <h1>To-Do List</h1>
             <h3>Sign Up</h3>
             <div class="form">
-                <label for="firstName">First name</label>
-                <input type="text" name="firsttName">
-
-                <label for="lastName">Last name</label>
-                <input type="text" name="lastName">
+                <label for="firstName">Name</label>
+                <input type="text" name="firsttName" id="name">
 
                 <label for="email">Email</label>
-                <input type="text" name="email" id="">
+                <input type="text" name="email" id="email">
 
                 <label for="password">Password</label>
-                <input type="text" name="password" id="">
+                <input type="password" name="password" id="password">
 
                 <label for="confirm">Confirm password</label>
-                <input type="text" name="confirm" id="">
+                <input type="password" name="confirm" id="confirmPassword">
 
-                <button>Sign up</button>
+                <button onclick="signup()">Sign up</button>
             </div>
         </div>
     </main>
+    <script src="signup.js"></script>
+
 </body>
 </html>
