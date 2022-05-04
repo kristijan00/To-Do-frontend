@@ -1,0 +1,47 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Notes App</title>
+        <link rel="stylesheet" href="../css/main.css">
+    </head>
+    <body>
+        <div class="notes" id="app"  style="text-align: center">
+           
+            <div class="notes__sidebar">
+                <div class="col">
+                    <button type="button" id="toggleBtn" class="primary">My Notes</button>
+                </div>
+                  
+                <div class="listHolder">
+                    <ul class="list">
+                            <li>
+                            <span class="listName">Macbook</span>
+                            </li>
+                            <li>
+                              <span class="listName">Amazon Firestick</span>
+                            </li>
+                            <li>
+                              <span class="listName">Keyboard</span>
+                            </li>
+                            <li>
+                              <span class="listName">Headphones</span>
+                            </li>
+                            <li>
+                              <span class="listName">Airpods</span>
+                            </li>
+                    </ul>
+              </div>  
+            </div>
+            <div id="myDIV" class="header">
+                <h2 id="yoyo">My To Do List</h2>
+                <input type="text" id="addInput" placeholder="Title...">
+                <div class="col">
+                    <button type="button" id="addBtn" class="btn-primary">Add Item</button></div>
+              </div>
+        </div>
+        <script src="../js/main.js" type="module"></script>
+
+    </body>
+</html>
