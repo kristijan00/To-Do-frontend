@@ -8,6 +8,57 @@ const divList = document.querySelector('.listHolder');
 const listUl = document.querySelector('.list');
 const lis = listUl.children;
 var map = new Map()
+const logOutBtn = document.querySelector('#logOutBtn');
+
+logOutBtn.addEventListener('click', () => {
+  signOut();
+});
+
+// check if the user is logged in
+window.onload = function () {
+  // const url = "https://murmuring-refuge-03345.herokuapp.com/login";
+  const url = "http://localhost:3000/home";
+
+  var client = new XMLHttpRequest();
+
+  client.open("POST", url, false);
+  client.setRequestHeader("Content-Type", "application/json");
+  client.send();
+
+  if (client.status == 200) {
+
+    if (client.responseText === "0") {
+      // alert("Wrong credentials!");
+    } else {
+      alert("Logged in: " + client.responseText);
+      logOutBtn.style.display = 'block';
+    }
+
+  }
+};
+
+//sign out the user from the current session
+function signOut() {
+  // const url = "https://murmuring-refuge-03345.herokuapp.com/login";
+  const url = "http://localhost:3000/logout";
+
+  var client = new XMLHttpRequest();
+
+  client.open("POST", url, false);
+  client.setRequestHeader("Content-Type", "application/json");
+  client.send();
+
+  if (client.status == 200) {
+
+    if (client.responseText === "0") {
+      alert("You're not logged in");
+    } else {
+      alert("Logged out!");
+      logOutBtn.style.display = 'none';
+      window.location.replace("http://127.0.0.1:5500/html/login.html");
+    }
+  }
+};
 
 
 viewList(); 
@@ -32,17 +83,17 @@ const addBtn = document.querySelector('#addBtn');
 
 
 function addLists() {
-  if (addInput.value === ''){
-  
+  if (addInput.value === '') {
+
     alert('Enter text!!!');
-  
-} else {
-  const ul = divList.querySelector('ul');
-  const li = document.createElement('li');
+
+  } else {
+    const ul = divList.querySelector('ul');
+    const li = document.createElement('li');
     //li.innerHTML = addInput.value;
-    let title = addInput.value ;
+    let title = addInput.value;
     console.log(title)
-    
+
 
     let jsonData = JSON.stringify({
       'title': title
@@ -112,10 +163,10 @@ addBtn.addEventListener('click', () => {
 
 // add list when pressed enter
 addInput.addEventListener('keyup', (event) => {
-    if(event.which === 13) {
-      addLists();
-    }
-  });
+  if (event.which === 13) {
+    addLists();
+  }
+});
 /* 
 3. create action buttons
 ------------------------
@@ -180,3 +231,4 @@ divList.addEventListener('click', (event) => {
     } 
   }
 });
+

@@ -1,125 +1,150 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
 * {
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 :root {
-    --color-body: linear-gradient(to bottom, #8e6c6c, #665348, #3f3b30, #1f221c, #010302);
+  --color-body: linear-gradient(to bottom, #8e6c6c, #665348, #3f3b30, #1f221c, #010302);
 }
 
 body {
-    margin    : 0;
-    padding   : 0;
-    background: var(--color-body);
+  margin    : 0;
+  padding   : 0;
+  background: var(--color-body);
 }
 
 .notes__sidebar {
-    border-right: 2px solid #8e6c6c;
-    flex-shrink: 0;
-    overflow-y: auto;
-    padding: 1em;
-    width: 300px;
-    top: 0;
-    left: 100;
+  border-right: 2px solid #8e6c6c;
+  flex-shrink : 0;
+  overflow-y  : auto;
+  padding     : 1em;
+  width       : 300px;
+  top         : 0;
+  left        : 100;
 }
-#yoyo{
-    color: white;
-   position: absolute;
-   top: 2;
-   left: 400;
+
+#yoyo {
+  color   : white;
+  position: absolute;
+  top     : 2;
+  left    : 400;
 }
+
 .btn-primary {
-    background: #8e6c6c;
-    border: none;
-    border-radius: 7px;
-    color: white;
-    cursor: pointer;
-    font-size: 1.25em;
-    font-weight: bold;
-    margin-bottom: 1em;
-    padding: 0.75em 0;
-    width: 40%;
-    position: absolute;
-    top: 100;
-    left: 400;
+  background   : #8e6c6c;
+  border       : none;
+  border-radius: 7px;
+  color        : white;
+  cursor       : pointer;
+  font-size    : 1.25em;
+  font-weight  : bold;
+  margin-bottom: 1em;
+  padding      : 0.75em 0;
+  width        : 40%;
+  position     : absolute;
+  top          : 100;
+  left         : 400;
 }
 
 .btn-primary:hover {
-    background: #3f3b30;
+  background: #3f3b30;
 }
+
 .primary {
-    background: #8e6c6c;
-    border: none;
-    border-radius: 7px;
-    color: white;
-    cursor: pointer;
-    font-size: 1.25em;
-    font-weight: bold;
-    margin-bottom: 1em;
-    padding: 0.75em 0;
-    width: 40%;
-    
+  background   : #8e6c6c;
+  border       : none;
+  border-radius: 7px;
+  color        : white;
+  cursor       : pointer;
+  font-size    : 1.25em;
+  font-weight  : bold;
+  margin-bottom: 1em;
+  padding      : 0.75em 0;
+  width        : 40%;
+
 }
 
 .primary:hover {
-    background: #8e6c6c;
+  background: #8e6c6c;
 }
-*
-input[type="text"] {
-    border: none;
-    color: white;
-    outline: none;
-    width: 40%;
-    height: 40px;
-    border: 1px solid #ccc;
-    background: #8e6c6c;
-    padding: 10px;
-    font: 300 16px/1.5 'Roboto', sans-serif;
-    transition: border 0.3s linear;
-    position: absolute;
-    top: 50;
-    left: 400;
-  }
-  
-  input[type="text"]:focus {
-    border-color: #3f3b30;
-    outline: none;
-  }
+
+* input[type="text"] {
+  border    : none;
+  color     : white;
+  outline   : none;
+  width     : 40%;
+  height    : 40px;
+  border    : 1px solid #ccc;
+  background: #8e6c6c;
+  padding   : 10px;
+  font      : 300 16px/1.5 'Roboto', sans-serif;
+  transition: border 0.3s linear;
+  position  : absolute;
+  top       : 50;
+  left      : 400;
+}
+
+input[type="text"]:focus {
+  border-color: #3f3b30;
+  outline     : none;
+}
 
 /* 
 list holder
 -----------
 */
 .listHolder li {
-    counter-increment: step-counter;
-    overflow: hidden;
-    padding: 0 0 20px 30px;
-    position: relative;
-    color: white;
-  }
+  counter-increment: step-counter;
+  overflow         : hidden;
+  padding          : 0 0 20px 30px;
+  position         : relative;
+  color            : white;
+}
 
 
-  .listHolder li:before {
-    content: counter(step-counter);
-    background: #8e6c6c;
-    color: #fff;
-    font-size: 14px;
-    padding: 0px 6px;
-    border-radius: 3px;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  .listHolder .listName {
-    float: left;
-  }
-  
-  .listHolder .btn-icon {
-    float: right;
-    margin: 0 0 0 20px;
-  }
-  .btn-icon.remove:before {
-    content: '\f2ed';
-  }
+.listHolder li:before {
+  content      : counter(step-counter);
+  background   : #8e6c6c;
+  color        : #fff;
+  font-size    : 14px;
+  padding      : 0px 6px;
+  border-radius: 3px;
+  position     : absolute;
+  top          : 0;
+  left         : 0;
+}
+
+.listHolder .listName {
+  float: left;
+}
+
+.listHolder .btn-icon {
+  float : right;
+  margin: 0 0 0 20px;
+}
+
+.btn-icon.remove:before {
+  content: '\f2ed';
+}
+
+#logOutBtn {
+  display      : none;
+  background   : #8e6c6c;
+  border       : none;
+  border-radius: 7px;
+  color        : white;
+  cursor       : pointer;
+  font-size    : 1.25em;
+  font-weight  : normal;
+  margin-bottom: 1em;
+  padding      : 0.5rem;
+  width        : 8%;
+  position     : absolute;
+  top          : 50;
+  left         : 77rem;
+}
+
+#logOutBtn:hover {
+  background: #3f3b30;
+}

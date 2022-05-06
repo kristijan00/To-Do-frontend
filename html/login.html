@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/login.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Login</title>
 </head>
 
@@ -15,16 +16,17 @@
             <h1>To-Do List</h1>
             <h3>Login</h3>
             <div class="form">
-                <label for="user">Username</label>
-                <input type="text" name="user" id="">
+                <label for="user">Email</label>
+                <input type="text" name="user" id="email">
 
                 <label for="pass">Password</label>
-                <input type="text" name="pass" id="">
-                <button>Login</button>
+                <input type="text" name="pass" id="password">
+                <button onclick="login()">Login</button>
                 <a class="signUpBtn" value="signup" href="../html/signUp.html">Sign Up?</a>
             </div>
         </div>
     </main>
+    <script src="../Js/login.js"></script>
 </body>
 
 </html>
