@@ -5,7 +5,12 @@
 // create variables
 const toggleBtn = document.querySelector('#toggleBtn');
 const divList = document.querySelector('.listHolder');
+const listUl = document.querySelector('.list');
+const lis = listUl.children;
+var map = new Map()
 
+
+viewList(); 
 // action to be taken when clicked on hide list button
 toggleBtn.addEventListener('click', () => {
   if (divList.style.display === 'none') {
@@ -55,11 +60,47 @@ function addLists() {
         // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
         li.innerHTML = title;
         ul.appendChild(li);
-    createBtn(li);
+        createBtn(li);
       
   }
 
   }
+}
+
+function viewList() {
+ 
+  const url = "https://murmuring-refuge-03345.herokuapp.com/notebyEmail";
+     
+     var client = new XMLHttpRequest();
+     
+     client.open("GET", url, false);
+     client.setRequestHeader("Content-Type", "application/json");
+     client.send();
+     
+     if (client.status == 200){
+        // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
+        let notes = JSON.parse(client.response);
+        var allNotes = notes.results.map(d => d.title);
+        var getTheId = notes.results.map(d => d.noteid);
+        console.log(allNotes); 
+        for (let index = 0; index < allNotes.length; index++) {
+          const ul = divList.querySelector('ul');
+          const li = document.createElement('li');
+          const noteId = getTheId[index];
+          const getNotes = allNotes[index]
+          li.innerHTML = getNotes; 
+          li.setAttribute("id", noteId); 
+          ul.appendChild(li);
+          saveNoteId(li, noteId); 
+          map.set(noteId, li)
+          console.log("Note " + allNotes[index] + ": ID: " + getTheId[index]); 
+        }
+     
+  }
+}
+
+function deleteList() {
+  
 }
 
 
@@ -80,33 +121,30 @@ addInput.addEventListener('keyup', (event) => {
 ------------------------
 */
 // create variables
-const listUl = document.querySelector('.list');
-const lis = listUl.children;
 
 function createBtn(li) {
   // create remove button
   const remove = document.createElement('button');
   remove.className = 'btn-icon remove';
   li.appendChild(remove);
-
-  /* create down button
-  const down = document.createElement('button');
-  down.className = 'btn-icon down';
-  li.appendChild(down);
-
-  // create up button
-  const up = document.createElement('button');
-  up.className = 'btn-icon up';
-  li.appendChild(up);*/
-
   return li;
 }
 
-// loop to add buttons in each li
+function saveNoteId (li, noteId) { 
+  const id = document.createElement('Label');
+  id.className = 'getId';
+//$('.getId').attr("hidden", false);
+ id.id = noteId; 
+ li.appendChild(id); 
+ return li; 
+ }
+
+ 
+
+
 for (var i = 0; i < lis.length; i++) {
   createBtn(lis[i]);
-}
-
+  }
 
 /* 
 4. enabling button actions (to move item up, down or delete)
@@ -115,20 +153,30 @@ for (var i = 0; i < lis.length; i++) {
 divList.addEventListener('click', (event) => {
   if (event.target.tagName === 'BUTTON') {
     const button = event.target;
-    const li = button.parentNode;
+   const li = button.parentNode;
     const ul = li.parentNode;
     if (button.className === 'btn-icon remove') {
-      ul.removeChild(li);
-    } /*else if (button.className === 'btn-icon down') {
-      const nextLi = li.nextElementSibling;
-      if (nextLi) {
-        ul.insertBefore(nextLi, li);
-      }
-    } else if (button.className === 'btn-icon up') {
-      const prevLi = li.previousElementSibling;
-      if (prevLi) {
-        ul.insertBefore(li, prevLi);
-      }
-    }*/
+      var id = $(li).attr("id"); 
+      let jsonData = JSON.stringify({
+        'id': id,
+      });
+       const url = "https://murmuring-refuge-03345.herokuapp.com/delete";
+      // const url = "http://localhost:3000/delete";
+       
+       var client = new XMLHttpRequest();
+       
+       client.open("POST", url, false);
+       client.setRequestHeader("Content-Type", "application/json");
+       client.send(jsonData);
+       
+       if (client.status == 200){
+          // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
+           if(client.response==1){
+            ul.removeChild(li);
+            console.log("Deleted"); 
+
+           }
+    }
+    } 
   }
 });
