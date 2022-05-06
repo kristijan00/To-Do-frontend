@@ -4,7 +4,7 @@ function login() {
 
   if (email != undefined && pass != undefined) {
     let jsonData = JSON.stringify({
-      'email': email, 'password': password
+      'email': email, 'pass': pass
     });
     // const url = "https://murmuring-refuge-03345.herokuapp.com/login";
     const url = "http://localhost:3000/login";
@@ -17,14 +17,15 @@ function login() {
 
     if (client.status == 200) {
 
-      alert(client.responseText);
-      (client.responseText === "1" ? window.location.replace("http://127.0.0.1:5500/html/main.html") : alert("Wrong credentials"));
-      
+      if (client.responseText === "0") {
+        alert("Wrong credentials!");
+      } else {
+        alert("Logged in: " + client.responseText);
+        window.location.replace("http://127.0.0.1:5500/html/main.html");
+      }
     } else {
       alert("Error");
     }
-
-
   }
   else {
     alert("Wrong input!")
