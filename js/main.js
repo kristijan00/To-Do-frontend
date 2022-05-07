@@ -9,6 +9,7 @@ const listUl = document.querySelector('.list');
 const lis = listUl.children;
 var map = new Map()
 const logOutBtn = document.querySelector('#logOutBtn');
+var email; 
 
 logOutBtn.addEventListener('click', () => {
   signOut();
@@ -16,8 +17,9 @@ logOutBtn.addEventListener('click', () => {
 
 // check if the user is logged in
 window.onload = function () {
-  // const url = "https://murmuring-refuge-03345.herokuapp.com/login";
-  const url = "https://murmuring-refuge-03345.herokuapp.com/home";
+   //const url = "https://murmuring-refuge-03345.herokuapp.com/login";
+  //const url = "https://murmuring-refuge-03345.herokuapp.com/home";
+  //const url = "http://127.0.0.1:3000/login"; 
 
   var client = new XMLHttpRequest();
 
@@ -39,8 +41,7 @@ window.onload = function () {
 
 //sign out the user from the current session
 function signOut() {
-  // const url = "https://murmuring-refuge-03345.herokuapp.com/login";
-  const url = "https://murmuring-refuge-03345.herokuapp.com/logout";
+   const url = "https://murmuring-refuge-03345.herokuapp.com/logout";
 
   var client = new XMLHttpRequest();
 
@@ -94,41 +95,52 @@ function addLists() {
     let title = addInput.value;
     console.log(title)
 
+    email = localStorage.getItem("email"); 
 
+    console.log(email); 
     let jsonData = JSON.stringify({
-      'title': title
+      'title': title, 'email': email
     });
+
    
      const url = "https://murmuring-refuge-03345.herokuapp.com/saveNote";
-     
+    // const url = "http://127.0.0.1:3000/saveNote"; 
      var client = new XMLHttpRequest();
      
      client.open("POST", url, false);
      client.setRequestHeader("Content-Type", "application/json");
      client.send(jsonData);
      
-     if (client.status == 200){
+      if (client.status == 200){
         // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
         li.innerHTML = title;
         ul.appendChild(li);
         createBtn(li);
+      $("#addInput").val("");
+      window.location.reload();
+
       
-  }
+       }
 
   }
 }
-
 function viewList() {
- 
+  email = localStorage.getItem("email"); 
+  console.log(localStorage.getItem("email")); 
+
   const url = "https://murmuring-refuge-03345.herokuapp.com/notebyEmail";
-     
+// const url = "http://127.0.0.1:3000/notebyEmail";
+
+  let jsonData = JSON.stringify({
+    'email': email
+  });
+
      var client = new XMLHttpRequest();
      
-     client.open("GET", url, false);
+     client.open("POST", url, false);
      client.setRequestHeader("Content-Type", "application/json");
-     client.send();
-     
-     if (client.status == 200){
+     client.send(jsonData);
+      if (client.status == 200){
         // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
         let notes = JSON.parse(client.response);
         var allNotes = notes.results.map(d => d.title);
@@ -148,6 +160,8 @@ function viewList() {
         }
      
   }
+     
+     
 }
 
 function deleteList() {
@@ -212,23 +226,25 @@ divList.addEventListener('click', (event) => {
         'id': id,
       });
        const url = "https://murmuring-refuge-03345.herokuapp.com/delete";
-      // const url = "http://localhost:3000/delete";
+      // const url = "http://127.0.0.1:3000/delete";
        
+
        var client = new XMLHttpRequest();
        
        client.open("POST", url, false);
        client.setRequestHeader("Content-Type", "application/json");
        client.send(jsonData);
-       
-       if (client.status == 200){
+
+        if (client.status == 200){
           // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
            if(client.response==1){
             ul.removeChild(li);
             console.log("Deleted"); 
 
-           }
+           
     }
+        }
+       
     } 
   }
 });
-
