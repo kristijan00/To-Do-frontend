@@ -6,8 +6,8 @@ function login() {
     let jsonData = JSON.stringify({
       'email': email, 'pass': pass
     });
-    // const url = "https://murmuring-refuge-03345.herokuapp.com/login";
-    const url = "http://localhost:3000/login";
+    const url = "https://murmuring-refuge-03345.herokuapp.com/login";
+    // const url = "http://localhost:3000/login";
 
     var client = new XMLHttpRequest();
 

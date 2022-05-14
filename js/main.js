@@ -13,8 +13,8 @@ logOutBtn.addEventListener('click', () => {
 
 // check if the user is logged in
 window.onload = function () {
-  // const url = "https://murmuring-refuge-03345.herokuapp.com/login";
-  const url = "http://localhost:3000/home";
+  const url = "https://murmuring-refuge-03345.herokuapp.com/home";
+  // const url = "http://localhost:3000/home";
 
   var client = new XMLHttpRequest();
 
@@ -36,8 +36,8 @@ window.onload = function () {
 
 //sign out the user from the current session
 function signOut() {
-  // const url = "https://murmuring-refuge-03345.herokuapp.com/login";
-  const url = "http://localhost:3000/logout";
+  const url = "https://murmuring-refuge-03345.herokuapp.com/logout";
+  // const url = "http://localhost:3000/logout";
 
   var client = new XMLHttpRequest();
 
