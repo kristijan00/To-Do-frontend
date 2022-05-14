@@ -141,7 +141,7 @@ list holder
   padding      : 0.5rem;
   width        : 8%;
   position     : absolute;
-  top          : 50;
+  top          : -50;
   left         : 77rem;
 }
 
