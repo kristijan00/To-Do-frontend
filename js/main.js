@@ -18,7 +18,7 @@ logOutBtn.addEventListener('click', () => {
 // check if the user is logged in
 window.onload = function () {
    //const url = "https://murmuring-refuge-03345.herokuapp.com/login";
-  //const url = "https://murmuring-refuge-03345.herokuapp.com/home";
+  const url = "https://murmuring-refuge-03345.herokuapp.com/home";
   //const url = "http://127.0.0.1:3000/login"; 
 
   var client = new XMLHttpRequest();
