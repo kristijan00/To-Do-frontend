@@ -1,7 +1,3 @@
-/* 
-1. show / hide button 
----------------------
-*/
 // create variables
 const toggleBtn = document.querySelector('#toggleBtn');
 const divList = document.querySelector('.listHolder');
@@ -17,9 +13,7 @@ logOutBtn.addEventListener('click', () => {
 
 // check if the user is logged in
 window.onload = function () {
-   //const url = "https://murmuring-refuge-03345.herokuapp.com/login";
   const url = "https://murmuring-refuge-03345.herokuapp.com/home";
-  //const url = "http://127.0.0.1:3000/login"; 
 
   var client = new XMLHttpRequest();
 
@@ -30,9 +24,7 @@ window.onload = function () {
   if (client.status == 200) {
 
     if (client.responseText === "0") {
-      // alert("Wrong credentials!");
     } else {
-      alert("Logged in: " + client.responseText);
       logOutBtn.style.display = 'block';
     }
 
@@ -54,7 +46,7 @@ function signOut() {
     if (client.responseText === "0") {
       alert("You're not logged in");
     } else {
-      alert("Logged out!");
+     // alert("Logged out!");
       logOutBtn.style.display = 'none';
       window.location.replace("http://127.0.0.1:5500/html/login.html");
     }
@@ -91,7 +83,6 @@ function addLists() {
   } else {
     const ul = divList.querySelector('ul');
     const li = document.createElement('li');
-    //li.innerHTML = addInput.value;
     let title = addInput.value;
     console.log(title)
 
@@ -104,7 +95,6 @@ function addLists() {
 
    
      const url = "https://murmuring-refuge-03345.herokuapp.com/saveNote";
-    // const url = "http://127.0.0.1:3000/saveNote"; 
      var client = new XMLHttpRequest();
      
      client.open("POST", url, false);
@@ -112,7 +102,6 @@ function addLists() {
      client.send(jsonData);
      
       if (client.status == 200){
-        // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
         li.innerHTML = title;
         ul.appendChild(li);
         createBtn(li);
@@ -129,7 +118,6 @@ function viewList() {
   console.log(localStorage.getItem("email")); 
 
   const url = "https://murmuring-refuge-03345.herokuapp.com/notebyEmail";
-// const url = "http://127.0.0.1:3000/notebyEmail";
 
   let jsonData = JSON.stringify({
     'email': email
@@ -141,7 +129,6 @@ function viewList() {
      client.setRequestHeader("Content-Type", "application/json");
      client.send(jsonData);
       if (client.status == 200){
-        // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
         let notes = JSON.parse(client.response);
         var allNotes = notes.results.map(d => d.title);
         var getTheId = notes.results.map(d => d.noteid);
@@ -198,7 +185,6 @@ function createBtn(li) {
 function saveNoteId (li, noteId) { 
   const id = document.createElement('Label');
   id.className = 'getId';
-//$('.getId').attr("hidden", false);
  id.id = noteId; 
  li.appendChild(id); 
  return li; 
@@ -225,9 +211,7 @@ divList.addEventListener('click', (event) => {
       let jsonData = JSON.stringify({
         'id': id,
       });
-       const url = "https://murmuring-refuge-03345.herokuapp.com/delete";
-      // const url = "http://127.0.0.1:3000/delete";
-       
+       const url = "https://murmuring-refuge-03345.herokuapp.com/delete";       
 
        var client = new XMLHttpRequest();
        
@@ -236,7 +220,6 @@ divList.addEventListener('click', (event) => {
        client.send(jsonData);
 
         if (client.status == 200){
-          // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
            if(client.response==1){
             ul.removeChild(li);
             console.log("Deleted"); 

@@ -8,8 +8,7 @@ function signup() {
     let jsonData = JSON.stringify({
      'name': name, 'password': password, 'email': email
    });
-    //const url = "https://murmuring-refuge-03345.herokuapp.com/register";
-    const url = "http://localhost:3000/register";
+    const url = "https://murmuring-refuge-03345.herokuapp.com/register";
     
     var client = new XMLHttpRequest();
     
