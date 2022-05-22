@@ -21,7 +21,7 @@ function login() {
         alert("Wrong credentials!");
       } else {
        // alert("Logged in: " + client.responseText);
-        window.location.replace("http://127.0.0.1:5500/html/main.html");
+        window.location.replace("http://127.0.0.1:5500/html/Lists.html");
         localStorage.setItem("email", email); 
       }
     } else {

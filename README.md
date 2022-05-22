@@ -1,4 +1,5 @@
 # To-Do-frontend
+* Run the login.html file initially 
 
 - This program is the frontend for the To-do application
   that is being done for educational purpose.
