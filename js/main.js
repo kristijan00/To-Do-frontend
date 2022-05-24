@@ -1,7 +1,3 @@
-/* 
-1. show / hide button 
----------------------
-*/
 // create variables
 const toggleBtn = document.querySelector('#toggleBtn');
 const divList = document.querySelector('.listHolder');
@@ -54,7 +50,7 @@ function signOut() {
     if (client.responseText === "0") {
       alert("You're not logged in");
     } else {
-      alert("Logged out!");
+     // alert("Logged out!");
       logOutBtn.style.display = 'none';
       window.location.replace("http://127.0.0.1:5500/html/login.html");
     }
@@ -91,7 +87,6 @@ function addLists() {
   } else {
     const ul = divList.querySelector('ul');
     const li = document.createElement('li');
-    //li.innerHTML = addInput.value;
     let title = addInput.value;
     console.log(title)
 
@@ -102,20 +97,18 @@ function addLists() {
       'title': title, 'email': email
     });
 
-
-    const url = "https://murmuring-refuge-03345.herokuapp.com/saveNote";
-    // const url = "http://127.0.0.1:3000/saveNote"; 
-    var client = new XMLHttpRequest();
-
-    client.open("POST", url, false);
-    client.setRequestHeader("Content-Type", "application/json");
-    client.send(jsonData);
-
-    if (client.status == 200) {
-      // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
-      li.innerHTML = title;
-      ul.appendChild(li);
-      createBtn(li);
+   
+     const url = "https://murmuring-refuge-03345.herokuapp.com/saveNote";
+     var client = new XMLHttpRequest();
+     
+     client.open("POST", url, false);
+     client.setRequestHeader("Content-Type", "application/json");
+     client.send(jsonData);
+     
+      if (client.status == 200){
+        li.innerHTML = title;
+        ul.appendChild(li);
+        createBtn(li);
       $("#addInput").val("");
       window.location.reload();
 
@@ -129,36 +122,34 @@ function viewList() {
   console.log(localStorage.getItem("email"));
 
   const url = "https://murmuring-refuge-03345.herokuapp.com/notebyEmail";
-  // const url = "http://127.0.0.1:3000/notebyEmail";
 
   let jsonData = JSON.stringify({
     'email': email
   });
 
-  var client = new XMLHttpRequest();
-
-  client.open("POST", url, false);
-  client.setRequestHeader("Content-Type", "application/json");
-  client.send(jsonData);
-  if (client.status == 200) {
-    // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
-    let notes = JSON.parse(client.response);
-    var allNotes = notes.results.map(d => d.title);
-    var getTheId = notes.results.map(d => d.noteid);
-    console.log(allNotes);
-    for (let index = 0; index < allNotes.length; index++) {
-      const ul = divList.querySelector('ul');
-      const li = document.createElement('li');
-      const noteId = getTheId[index];
-      const getNotes = allNotes[index]
-      li.innerHTML = getNotes;
-      li.setAttribute("id", noteId);
-      ul.appendChild(li);
-      saveNoteId(li, noteId);
-      map.set(noteId, li)
-      console.log("Note " + allNotes[index] + ": ID: " + getTheId[index]);
-    }
-
+     var client = new XMLHttpRequest();
+     
+     client.open("POST", url, false);
+     client.setRequestHeader("Content-Type", "application/json");
+     client.send(jsonData);
+      if (client.status == 200){
+        let notes = JSON.parse(client.response);
+        var allNotes = notes.results.map(d => d.title);
+        var getTheId = notes.results.map(d => d.noteid);
+        console.log(allNotes); 
+        for (let index = 0; index < allNotes.length; index++) {
+          const ul = divList.querySelector('ul');
+          const li = document.createElement('li');
+          const noteId = getTheId[index];
+          const getNotes = allNotes[index]
+          li.innerHTML = getNotes; 
+          li.setAttribute("id", noteId); 
+          ul.appendChild(li);
+          saveNoteId(li, noteId); 
+          map.set(noteId, li)
+          console.log("Note " + allNotes[index] + ": ID: " + getTheId[index]); 
+        }
+     
   }
 
 
@@ -198,12 +189,10 @@ function createBtn(li) {
 function saveNoteId(li, noteId) {
   const id = document.createElement('Label');
   id.className = 'getId';
-  //$('.getId').attr("hidden", false);
-  id.id = noteId;
-  li.appendChild(id);
-  return li;
-}
-
+ id.id = noteId; 
+ li.appendChild(id); 
+ return li; 
+ }
 
 
 
@@ -225,22 +214,13 @@ divList.addEventListener('click', (event) => {
       let jsonData = JSON.stringify({
         'id': id,
       });
-      const url = "https://murmuring-refuge-03345.herokuapp.com/delete";
-      // const url = "http://127.0.0.1:3000/delete";
+       const url = "https://murmuring-refuge-03345.herokuapp.com/delete";       
 
 
-      var client = new XMLHttpRequest();
-
-      client.open("POST", url, false);
-      client.setRequestHeader("Content-Type", "application/json");
-      client.send(jsonData);
-
-      if (client.status == 200) {
-        // alert("The request succeeded!\n\nThe response representation was:\n\n" + client.responseText)
-        if (client.response == 1) {
-          ul.removeChild(li);
-          console.log("Deleted");
-
+        if (client.status == 200){
+           if(client.response==1){
+            ul.removeChild(li);
+            console.log("Deleted"); 
 
         }
       }

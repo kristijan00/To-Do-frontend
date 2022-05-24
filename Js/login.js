@@ -7,7 +7,6 @@ function login() {
       'email': email, 'pass': pass
     });
      const url = "https://murmuring-refuge-03345.herokuapp.com/login";
-    //const url = "http://127.0.0.1:3000/login";
 
     var client = new XMLHttpRequest();
 
@@ -20,8 +19,7 @@ function login() {
       if (client.responseText === "0") {
         alert("Wrong credentials!");
       } else {
-       // alert("Logged in: " + client.responseText);
-        window.location.replace("http://127.0.0.1:5500/html/main.html");
+        window.location.replace("http://127.0.0.1:5500/html/Lists.html");
         localStorage.setItem("email", email); 
       }
     } else {
