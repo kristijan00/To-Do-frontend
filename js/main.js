@@ -215,7 +215,11 @@ divList.addEventListener('click', (event) => {
         'id': id,
       });
        const url = "https://murmuring-refuge-03345.herokuapp.com/delete";       
-
+       var client = new XMLHttpRequest();
+    
+       client.open("POST", url, false);
+       client.setRequestHeader("Content-Type", "application/json");
+       client.send(jsonData);
 
         if (client.status == 200){
            if(client.response==1){
