@@ -4,7 +4,7 @@
 - This program is the front-end of the To-do application
   that is being done for educational purposes.
   It is implemented with Javascript, HTML, and CSS.
-  It is a simple application that lets users take notes,
+  It is a simple application that lets users take notes.
   Users are able to add notes, delete notes, and view notes.
   Users are authenticated when accessing the application.
   First, they need to register and their credentials are saved in the database (persistent storage).
